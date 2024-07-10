@@ -9,8 +9,11 @@ data <- fread("2021 Data.csv")
 # Specify numerical and categorical columns
 numerical_features <- c("AGEYEARS", "EDMINS", "SBP", "PULSERATE", "TEMPERATURE", 
                         "RESPIRATORYRATE", "PULSEOXIMETRY", "HEIGHT", "WEIGHT", "TOTALGCS", "BEDSIZE", 
-                        "RibFx", "BladderInj", "SmallBowelInj", "PelvicFx", "LowerExtremityFx", "HTX", "PTX", "SCI", "Cspine", "TBI", "EsophagusInj", "HeartInj", "SkullFx", "Spleen", "Liver", "Gallbladder", "BileDuct", "Pancreas", "Stomach", "Colon", "Rectum", "Kidney", "Ureter", "Urethra", "FacialFx", "UpperExtremityFx", "ThoracicVessels", "FlailChest", "CervicalCord", "ThoracicCord", 
-                        "ALCOHOLSCREENRESULT", "ISS")
+                        "RibFx", "BladderInj", "SmallBowelInj", "PelvicFx", "LowerExtremityFx", "HTX",
+                        "PTX", "SCI", "Cspine", "TBI", "EsophagusInj", "HeartInj", "SkullFx", "Spleen",
+                        "Liver", "Gallbladder", "BileDuct", "Pancreas", "Stomach", "Colon", "Rectum",
+                        "Kidney", "Ureter", "Urethra", "FacialFx", "UpperExtremityFx", "ThoracicVessels",
+                        "FlailChest", "CervicalCord", "ThoracicCord", "ALCOHOLSCREENRESULT", "ISS")
 
 # Adjust the categorical features to exclude 'inc_key'
 categorical_features <- setdiff(names(data), c(numerical_features, "HC_UNPLANNEDICU", "inc_key"))
@@ -106,8 +109,11 @@ data_2020 <- fread("2020 Data.csv")
 # Specify numerical and categorical columns
 numerical_features <- c("AGEYEARS", "EDMINS", "SBP", "PULSERATE", "TEMPERATURE", 
                         "RESPIRATORYRATE", "PULSEOXIMETRY", "HEIGHT", "WEIGHT", "TOTALGCS", "BEDSIZE", 
-                        "RibFx", "BladderInj", "SmallBowelInj", "PelvicFx", "LowerExtremityFx", "HTX", "PTX", "SCI", "Cspine", "TBI", "EsophagusInj", "HeartInj", "SkullFx", "Spleen", "Liver", "Gallbladder", "BileDuct", "Pancreas", "Stomach", "Colon", "Rectum", "Kidney", "Ureter", "Urethra", "FacialFx", "UpperExtremityFx", "ThoracicVessels", "FlailChest", "CervicalCord", "ThoracicCord", 
-                        "ALCOHOLSCREENRESULT", "ISS")
+                        "RibFx", "BladderInj", "SmallBowelInj", "PelvicFx", "LowerExtremityFx", "HTX",
+                        "PTX", "SCI", "Cspine", "TBI", "EsophagusInj", "HeartInj", "SkullFx", "Spleen",
+                        "Liver", "Gallbladder", "BileDuct", "Pancreas", "Stomach", "Colon", "Rectum",
+                        "Kidney", "Ureter", "Urethra", "FacialFx", "UpperExtremityFx", "ThoracicVessels",
+                        "FlailChest", "CervicalCord", "ThoracicCord", "ALCOHOLSCREENRESULT", "ISS")
 
 # Identify categorical features
 categorical_features <- setdiff(names(data_2020), c(numerical_features, "HC_UNPLANNEDICU", "inc_key"))
