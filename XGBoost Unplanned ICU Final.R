@@ -5,7 +5,8 @@ library(data.table)
 library(Matrix)
 library(ModelMetrics)
 
-#Load Data
+#Load 2021 Data
+data <- fread("2021 Data.csv")
 
 # Specify numerical and categorical columns
 numerical_features <- c("AGEYEARS", "EDMINS", "SBP", "PULSERATE", "TEMPERATURE", 
@@ -67,8 +68,8 @@ model <- xgb.train(
 
 ################################################################################
 # Testing on 2020 data
-# Load data
-data_2020 <- fread("Y:/Tyler Zander/Zander TQIP/2020_ZANDER_V7.csv")
+# Load 2020 data
+data_2020 <- fread("2020 Data")
 
 # Specify numerical and categorical columns (unchanged from your previous code)
 numerical_features <- c("AGEYEARS", "EDMINS", "SBP", "PULSERATE", "TEMPERATURE", 
