@@ -71,7 +71,7 @@ model <- xgb.train(
 # Load 2020 data
 data_2020 <- fread("2020 Data")
 
-# Specify numerical and categorical columns (unchanged from your previous code)
+# Specify numerical and categorical columns
 numerical_features <- c("AGEYEARS", "EDMINS", "SBP", "PULSERATE", "TEMPERATURE", 
                         "RESPIRATORYRATE", "PULSEOXIMETRY", "HEIGHT", "WEIGHT", "TOTALGCS", "BEDSIZE", 
                         "RibFx", "BladderInj", "SmallBowelInj", "PelvicFx", "LowerExtremityFx", "HTX",
