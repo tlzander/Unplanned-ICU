@@ -45,7 +45,7 @@ scale_pos_weight_val <- negative_cases / positive_cases
 # Set parameters for LightGBM
 params <- list(
   objective = "binary",
-  metric = c("binary_logloss", "auc"),
+  metric = "binary_logloss",
   boost_from_average = FALSE,
   scale_pos_weight = scale_pos_weight_val,
   learning_rate = 0.05,
