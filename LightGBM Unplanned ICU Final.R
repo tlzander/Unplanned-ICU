@@ -182,3 +182,31 @@ for(threshold in seq(0, 1, by = 0.01)) {
 
 # Print the optimal threshold based on F1 score for 2020 data
 print(paste("Optimal Threshold for F1 score (2020 Data):", optimal_threshold_f1_2020))
+
+#####################################################################################                                             
+                                             
+library(SHAPforxgboost)
+                                             
+# Define test_data_2020_features
+test_data_2020_features <- data_2020[, .SD, .SDcols = !c("HC_UNPLANNEDICU", "inc_key")]
+
+# Use all rows from the test dataset
+X <- data.matrix(test_data_2020_features)
+
+# Prepare SHAP values
+shap <- SHAPforxgboost::shap.prep(model, X_train = X)
+
+# Compute SHAP importance
+importance <- shap.importance(shap)
+
+# Convert to dataframe
+importance_df <- as.data.frame(importance)
+
+# View the dataframe
+print(importance_df)
+
+# Get SHAP feature importance
+shap_importance_df <- shap.importance(shap)
+
+# Select the top 10 features
+top_10_shap <- head(shap_importance_df, 10)                                             
