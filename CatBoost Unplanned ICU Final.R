@@ -145,7 +145,6 @@ for(threshold in seq(0, 1, by = 0.01)) {
   precision_2020 <- sum(predicted_classes_2020 == 1 & test_label_2020 == 1) / sum(predicted_classes_2020 == 1)
   recall_2020 <- sum(predicted_classes_2020 == 1 & test_label_2020 == 1) / sum(test_label_2020 == 1)
   
-  # Handle edge cases for precision and recall for 2020 data
   precision_2020 <- ifelse(is.nan(precision_2020), 0, precision_2020)
   recall_2020 <- ifelse(is.nan(recall_2020), 0, recall_2020)
   
@@ -163,3 +162,36 @@ for(threshold in seq(0, 1, by = 0.01)) {
 # Output the optimal F1 score and corresponding threshold
 cat("Max F1 Score (2020):", max_f1_2020, "\n")
 cat("Optimal Threshold for F1 (2020):", optimal_threshold_f1_2020, "\n")
+
+#########################################################################                                                  
+                                                  
+# Prepare the data for SHAP analysis
+test_data_2020_features <- data_2020[, !c("HC_UNPLANNEDICU", "inc_key"), with = FALSE]
+test_label_2020 <- data_2020$HC_UNPLANNEDICU
+
+# Create a CatBoost pool for the 2020 data
+test_pool_2020 <- catboost.load_pool(data = test_data_2020_features, 
+                                     label = test_label_2020, 
+                                     cat_features = categorical_features_2020)
+
+# Calculate SHAP values
+shap_values <- catboost.get_feature_importance(model, 
+                                               pool = test_pool_2020, 
+                                               type = 'ShapValues')
+
+shap_values <- shap_values[, -ncol(shap_values)]
+
+mean_shap_values <- colMeans(abs(shap_values))
+
+# Create a data frame of feature importances
+importance_df <- data.frame(
+  feature = colnames(test_data_2020_features),
+  importance = mean_shap_values
+)
+
+# Sort by importance
+importance_df <- importance_df[order(-importance_df$importance), ]
+
+# Print the top 10 most important features
+print(head(importance_df, 10))
+                                            
